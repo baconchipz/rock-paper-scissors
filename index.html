@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getComputerChoice(){
+            const choices = ['rock', 'paper', 'scissors'];
+            const randomIndex = Math.floor(Math.random() * choices.length);
+            return choices[randomIndex];
+        }
+        function getHumanChoice(){
+            let userInput = prompt("Input rock, paper or scissors:").toLowerCase();
+            while (!['rock', 'paper', 'scissors'].includes(userInput)){
+                userInput = prompt("Invalid input. Please enter rock, paper, or scissors:").toLowerCase();
+            }
+            return userInput;
+        }
+        let humanScore = 0;
+        let computerScore = 0;
+        function playRound(humanChoice, computerChoice){
+            if (humanChoice === computerChoice){
+                console.log("It's a tie! human: " + humanChoice + ", computer: " + computerChoice + " score: " + humanScore + "-" + computerScore);
+            }
+            else if (
+                (humanChoice === "rock" && computerChoice === "scissors") ||
+                (humanChoice === "paper" && computerChoice === "rock") ||
+                (humanChoice === "scissors" && computerChoice === "paper")
+            ){
+                humanScore++;
+                console.log("You win!" + "human: " + humanChoice + ", computer: " + computerChoice + "score: " + humanScore + "-" + computerScore);
+            }
+            else{
+                computerScore++;
+                console.log("You lose!" + "human: " + humanChoice + ", computer: " + computerChoice + " score: " + humanScore + "-" + computerScore);
+            }
+        }
+        function playGame(){
+                for (let i = 0; i < 5; i ++){
+                    const humanChoice = getHumanChoice(); //get Human choice
+                    const computerChoice = getComputerChoice(); //get Computer choice
+                    playRound(humanChoice, computerChoice); //play round
+                }
+                return "Final Score - Human: " + humanScore + ", Computer: " + computerScore;
+            }
+        console.log(playGame());
+    </script>
+</body>
+</html>
+
+<!--function control getComputerChoice that randomly 
+returns either 'rock', 'paper', or 'scissors' 
+--> 
+<!-- getHumanChoice function that prompts the user for input and returns their choice -->
+<!-- create 2 variable that stores Human and computer score -->
+ <!-- functon play round to evaluate score, console logs msg depending on winner-->
+<!-- function play game that will play round 5 times-->
+
